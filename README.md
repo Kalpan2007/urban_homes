@@ -12,14 +12,14 @@
     - It includes a messaging system to facilitate direct communication between buyers and sellers, negotiations, and appointments.
 
 
-  - What are existing similar solutions?
+- What are existing similar solutions?
 
     - www.theurbannook.com
     - www.realestateindia.com
 
 
 - How do you want to solve it?
-      - Develop a centralized platform where buyers and sellers can easily access and manage property listings.
+  - Develop a centralized platform where buyers and sellers can easily access and manage property listings.
 
   - Incorporate a robust messaging system that enables seamless communication between buyers and sellers.
    Ensure real-time notifications for new messages to enhance responsiveness.
