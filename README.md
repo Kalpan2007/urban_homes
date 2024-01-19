@@ -21,7 +21,8 @@
 - How do you want to solve it?
       - Develop a centralized platform where buyers and sellers can easily access and manage property listings.
 
-      - Incorporate a robust messaging system that enables seamless communication between buyers and sellers. Ensure real-time notifications for new messages to enhance responsiveness.
+  - Incorporate a robust messaging system that enables seamless communication between buyers and sellers.
+   Ensure real-time notifications for new messages to enhance responsiveness.
 
 - List of features you want to implement.
 
