@@ -12,7 +12,7 @@
     - It includes a messaging system to facilitate direct communication between buyers and sellers, negotiations, and appointments.
 
 
-    - What are existing similar solutions?
+  - What are existing similar solutions?
 
     - www.theurbannook.com
     - www.realestateindia.com
