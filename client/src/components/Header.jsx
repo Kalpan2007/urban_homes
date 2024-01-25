@@ -9,11 +9,11 @@ export default function Header() {
             <Link to='/'>
                 <div className=''>
                     <img src='https://urban-homes.s3.ap-south-1.amazonaws.com/logo+3.png'
-                    className='h-[20px] w-[100px]'></img>
+                    className='h-[30px] w-[120px]'></img>
                 </div>
             </Link>
 
-            <form className='bg-slate-100 p-3 rounded-lg flex items-center w-24 sm:w-64'>
+            <form className='bg-slate-100 p-3 rounded-lg flex items-center w-30 sm:w-64'>
                 <input type='text' placeholder='search...' className='bg-transparent focus:outline-none'></input>
                 <FaSearch className='text-slate-600' />
             </form>
