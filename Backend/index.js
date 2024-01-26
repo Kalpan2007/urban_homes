@@ -15,4 +15,9 @@ mongoose.connect(process.env.URL)
     .catch((error) => {
         console.log(error);
         console.log("DB connection is facing issue...");
-    })
+    });
+
+const userRoute = require("./routes/user.route");
+
+
+app.use("/api/user",userRoute);
