@@ -1,5 +1,8 @@
+const cors = require('cors');
 const express = require('express');
+
 const app = express();
+app.use(cors());
 
 
 app.use(express.json());
@@ -20,6 +23,17 @@ const authRouter = require("./routes/auth.route");
 
 app.use("/api/user",userRoute);
 app.use("/api/auth",authRouter);
+
+//middleware for handle error
+app.use((err, req, res, next) =>{
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Internal server error...";
+    return res.status(statusCode).json({
+        success: false,
+        statusCode,
+        message,
+    });
+});
 
 
 const PORT = 3000;
