@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Home() {
   return (
-    <div className='scrolling-sign overflow-y-hidden'>
+    <div className='scrolling-sign scrolllbar-none'>
     
       <div className='flex gap-6 max-w-8xl max-auto'>
         <div className='flex flex-col gap-6 py-28 px-[150px] '>
