@@ -8,4 +8,4 @@ const PrivateProfile = () => {
   return currentUser ? <Outlet /> : <Navigate to='/sign-in' />
 }
 
-export default PrivateProfile
+export default PrivateProfile;
