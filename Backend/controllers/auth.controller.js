@@ -4,7 +4,7 @@ const { errorHandler } = require("../utils/error");
 const jwt = require("jsonwebtoken");
 
  exports.signup = async (req,res,next) =>{
-    // console.log(req.body);
+    console.log(req.body);
     const {username, email, password} = req.body;
     console.log(password);
     const hashedPassword = bcryptjs.hashSync(password,10);
@@ -16,13 +16,16 @@ const jwt = require("jsonwebtoken");
         console.log("user added ...")
     }
     catch(error){
+        console.log(error);
         next(error);
         // next(errorHandler(550,"internal issue..."));
+        
 
     }
 }
 
 exports.signin = async (req, res, next) => {
+    console.log(req.body);
     const { email, password } = req.body;
     try {
         const validUser = await User.findOne({ email });
@@ -81,4 +84,13 @@ exports.google = async (req,res,next) => {
     catch(error){
 
     }
-}
+};
+
+exports.signOut = async (req, res, next) => {
+    try {
+        await res.clearCookie('access_token'); // Add quotes around 'access_token'
+        res.status(200).json("User has been log Out");
+    } catch (error) {
+        next(error);
+    }
+};

@@ -7,7 +7,7 @@ export default function Home() {
     
       <div className='flex gap-6 max-w-8xl max-auto'>
         <div className='flex flex-col gap-6 py-28 px-[150px] '>
-          <h1 className='text-black text-3xl font-bold lg: text-5xl'>
+          <h1 className='text-black text-3xl font-bold lg:text-5xl'>
             Find your next <span className='text-[#161A76]'>perfect</span><br/>
             place with ease
           </h1>
