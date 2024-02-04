@@ -3,16 +3,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRef } from 'react';
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage'
 import { app } from '../firebase';
-import { updateUserStart,updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signInStart, signOutUserStart, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice';
-const Profile = () => {
+import { updateUserStart,updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess } from '../redux/user/userSlice';
+
+export default function Profile() {
   const fileRef = useRef(null);
   const {currentUser, loading, error} = useSelector(state => state.user);
   const [file,setFile] = useState(undefined);
   const [filePercentage, setFilePercentage] = useState(0);
   const [fileUploadError,setFileUploadError] = useState(false);
   const [FormData,setFormData] = useState({});
+  const [ setUpdateSuccess] = useState(false);
+  const dispatch = useDispatch();
+  console.log(FormData);
 
+  console.log(file);
 
+  // firebase Storage
+  // allow read;
+  // allow write: if 
+  // request.resource.size < 2 * 1024 * 1024 &&
+  // request.resource.contentType.matches('image/.*')
   useEffect(()=> {
     if(file){
       handleFileUpload(file);
@@ -30,7 +40,7 @@ const Profile = () => {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setFilePercentage(Math.round(progress));
+        setFilePerc(Math.round(progress));
       },
       (error) => {
         setFileUploadError(true);
@@ -42,14 +52,13 @@ const Profile = () => {
       }
     );
   };
-
+  
   const changeHandler = (event) =>{
     setFormData({...FormData, [event.target.id]: event.target.value });
   }
 
   const submitHandler = async (e) => {
-    console.log("updated...");
-    // e.preventDefault();   
+    e.preventDefault();   
      try {
       dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
@@ -91,32 +100,18 @@ const Profile = () => {
     catch(error){
       dispatch(deleteUserFailure(error.message));
     }
-  };
-
-  const signOutHandler = async () =>{
-    try{
-      dispatch(signOutUserStart());
-      const res = await fetch('/api/auth/signout');
-      const data = res.json();
-      if(data.success === false){
-        dispatch(signOutUserFailure(data.message));
-        return;
-      }
-      dispatch(signOutUserSuccess(data));
-    }
-    catch(error){
-
-    }
   }
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl font-semibold my-7 text-center'>Profile</h1>
-
+      <h1 className='text-3xl font-semibold my-7 text-center'>  
+         Profile  
+      </h1>
+      
       <form onSubmit={submitHandler} className='flex flex-col gap-4'>
-        <input onChange={(event)=> setFile(event.target.files[0])} type='file'  ref={fileRef} hidden accept='image/*' multiple>
-        </input>
+        <input onChange={(event)=> setFile(event.target.files[0])} type='file' ref={fileRef} hidden accept='image/*' multiple>
 
+        </input>
         <img onClick={() => fileRef.current.click()} src={FormData.avatar ||currentUser.avatar}
         className='rounded-full w-24 h-24 object-cover cursor-pointer self-center mt-2 mb-6'></img>
 
@@ -132,7 +127,7 @@ const Profile = () => {
             }
           </p>
 
-          <input type='text' 
+        <input type='text' 
         placeholder='username' 
         id='username' 
         defaultValue={currentUser.username}
@@ -163,10 +158,9 @@ const Profile = () => {
       <div className='flex justify-between mt-5'>
         <span onClick={deleteUserHandler} className='text-red-600 font-medium cursor-pointer'>Delete account</span>
         
-        <span onClick={signOutHandler} className='text-red-600 font-medium cursor-pointer'>Sign out</span>
+        <span className='text-red-600 font-medium cursor-pointer'>Sign out</span>
+      </div>
+
     </div>
-  </div>
   )
 }
-
-export default Profile

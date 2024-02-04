@@ -3,7 +3,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 
 
 app.use(express.json());
@@ -20,11 +20,13 @@ mongoose.connect(process.env.URL)
         console.log("DB connection is facing issue...");
     });
 
-const userRoute = require("./routes/user.route");
+const userRouter = require("./routes/user.route");
 const authRouter = require("./routes/auth.route");
+const listingRouter = require("./routes/listing.route");
 
-app.use("/api/user",userRoute);
+app.use("/api/user",userRouter);
 app.use("/api/auth",authRouter);
+app.use("/api/listing",listingRouter);
 
 //middleware for handle error
 app.use((err, req, res, next) =>{
