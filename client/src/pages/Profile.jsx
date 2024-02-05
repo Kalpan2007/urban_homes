@@ -116,6 +116,7 @@ const Profile = () => {
     try {
       setShowListingsError(false);
       const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      // console.log(res);
       const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);
@@ -124,6 +125,7 @@ const Profile = () => {
 
       setUserListings(data);
     } catch (error) {
+      console.log(error);
       setShowListingsError(true);
     }
   };
@@ -151,7 +153,10 @@ const Profile = () => {
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold my-7 text-center'>Profile</h1>
 
-      <form onSubmit={submitHandler} className='flex flex-col gap-4'>
+      <form 
+       onSubmit={submitHandler} 
+       className='flex flex-col gap-4'>
+
         <input onChange={(event)=> setFile(event.target.files[0])} type='file'  ref={fileRef} hidden accept='image/*' multiple>
         </input>
 
@@ -190,7 +195,7 @@ const Profile = () => {
         onChange={changeHandler}
         className='border p-3 rounded-lg'></input>
 
-        <button
+        <button 
           disabled={loading}
           className='bg-black font-bold text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
         >
@@ -209,10 +214,11 @@ const Profile = () => {
         <span onClick={signOutHandler} className='text-red-600 font-medium cursor-pointer'>Sign out</span>
     </div>
 
-    <button onClick={showUserListingsHandler} className='text-green-700 w-full'>
+    <button type="button" onClick={showUserListingsHandler} className='text-green-700 w-full'>
         Show Listings
       </button>
       <p className='text-red-700 mt-5'>
+        {/* {showListingsError ? 'Error showing listings' : ''} */}
         {showListingsError ? 'Error showing listings' : ''}
       </p>
 
