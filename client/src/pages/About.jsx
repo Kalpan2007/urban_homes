@@ -1,4 +1,5 @@
 import React from 'react'
+import Testimonial from '../components/Testimonial'
 
 export default function About() {
   return (
@@ -13,6 +14,7 @@ export default function About() {
       <p className='text-slate-700 mb-4'>
       Backed by a wealth of experience and knowledge, our team of agents is committed to setting a new standard in the real estate industry. We believe that the process of buying or selling a property should be more than just a transaction; it should be an exciting and rewarding experience. At Sahand Estate, we are steadfast in our dedication to turning this vision into reality for each and every one of our valued clients.
       </p>
+      <Testimonial />
     </div>
   )
 }

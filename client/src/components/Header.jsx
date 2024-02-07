@@ -1,8 +1,9 @@
+import "./Header.css"
 import React, { useEffect, useState } from 'react';
 import {FaSearch} from "react-icons/fa"
 import {Link, useNavigate} from "react-router-dom"
 import {useSelector} from 'react-redux'
-
+import { BiMessageSquareAdd } from "react-icons/bi";
 export default function Header() {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
@@ -26,7 +27,9 @@ export default function Header() {
       }, [location.search]);
       
   return (
-    <header className='bg-slate-300 shadow-md'>
+    <header className='bg-white shadow-md'>
+        <div className=''>
+
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
             <Link to='/'>
                 <div className=''>
@@ -36,7 +39,7 @@ export default function Header() {
             </Link>
 
             <form onSubmit={submitHandler} 
-            className='bg-slate-100 p-3 rounded-lg flex items-center  w-30 sm:w-64'>
+            className='bg-slate-100 p-2 rounded-lg flex items-center  w-40 sm:w-64'>
                 <input type='text' placeholder='search...' 
                  onChange={(e) => setSearchTerm(e.target.value)}
                 className='bg-transparent focus:outline-none'></input>
@@ -45,13 +48,14 @@ export default function Header() {
                 </button>
             </form>
 
-            <ul className='flex gap-4'>
+            <ul className='flex gap-4 mt-3 flex-wrap'>
                 <Link to='/'>
                 <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>
                 </Link>
                 <Link to='/about'>
                 <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
                 </Link>
+                
                 <Link to='/profile'>
                     {
                         currentUser ? (
@@ -61,7 +65,13 @@ export default function Header() {
                         )
                     }
                 </Link>
+
+
+                {/* <div className="ml-10 h-10 w-10 mt-1">
+                <BiMessageSquareAdd />
+            </div> */}
             </ul>
+        </div>
         </div>
     </header>
   )
