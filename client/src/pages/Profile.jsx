@@ -4,9 +4,10 @@ import { useRef } from 'react';
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage'
 import { app } from '../firebase';
 import { updateUserStart,updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signInStart, signOutUserStart, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 const Profile = () => {
+  const naviagte = useNavigate()
   const fileRef = useRef(null);
   const {currentUser, loading, error} = useSelector(state => state.user);
   const [file,setFile] = useState(undefined);
@@ -124,6 +125,7 @@ const Profile = () => {
       }
 
       setUserListings(data);
+      naviagte('/show-listing')
     } catch (error) {
       console.log(error);
       setShowListingsError(true);
@@ -199,7 +201,7 @@ const Profile = () => {
           disabled={loading}
           className='bg-black font-bold text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80'
         >
-          {loading ? 'Loading...' : 'Update'}
+          {loading ? 'updating...' : 'Update'}
         </button>
 
         <Link className='bg-green-700 font-bold text-white text-center rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80' 
@@ -216,6 +218,7 @@ const Profile = () => {
 
     <button type="button" onClick={showUserListingsHandler} className='text-green-700 w-full'>
         Show Listings
+        {/* <Link to="/show-listing" ></Link> */}
       </button>
       <p className='text-red-700 mt-5'>
         {/* {showListingsError ? 'Error showing listings' : ''} */}
@@ -223,6 +226,10 @@ const Profile = () => {
       </p>
 
       {userListings && userListings.length > 0 && (
+        <UserListing userListings={userListings} />
+      )}
+
+      {/* {userListings && userListings.length > 0 && (
         <div className='flex flex-col gap-4'>
           <h1 className='text-center mt-7 text-2xl font-semibold'>
             Your Listings
@@ -246,7 +253,7 @@ const Profile = () => {
                 <p>{listing.name}</p>
               </Link>
 
-              <div className='flex flex-col item-center'>
+              {/* <div className='flex flex-col item-center'>
                 <button
                   onClick={() => deleteListingHandler(listing._id)}
                   className='text-red-700 uppercase'
@@ -256,11 +263,12 @@ const Profile = () => {
                 <Link to={`/update-listing/${listing._id}`}>
                   <button className='text-green-700 uppercase'>Edit</button>
                 </Link>
-              </div>
+              </div> 
             </div>
           ))}
         </div>
-      )}
+      )} */}
+
   </div>
   )
 }
