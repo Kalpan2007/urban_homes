@@ -40,7 +40,7 @@ const Testimonial = () => {
                 
               />
             </SwiperSlide>
-            <div className="absolute left-0 right-0 z-10 flex items-center justify-center gap-5 sm:bottom-0">
+            <div className="absolute left-0 right-0 z-10 flex items-center justify-center gap-5 sm:bottom-0 hover:none">
               <div className="prev-arrow cursor-pointer" onClick={handlePrev}>
                 <FaArrowAltCircleLeft className="h-5 w-5" />
 
