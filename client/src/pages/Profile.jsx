@@ -5,6 +5,7 @@ import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/st
 import { app } from '../firebase';
 import { updateUserStart,updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signInStart, signOutUserStart, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice';
 import {Link, useNavigate} from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const Profile = () => {
   const naviagte = useNavigate()
@@ -217,7 +218,7 @@ const Profile = () => {
     </div>
 
     <button type="button" onClick={showUserListingsHandler} className='text-green-700 w-full'>
-        Show Listings
+        {/* Show Listings */}
         {/* <Link to="/show-listing" ></Link> */}
       </button>
       <p className='text-red-700 mt-5'>
@@ -228,47 +229,6 @@ const Profile = () => {
       {userListings && userListings.length > 0 && (
         <UserListing userListings={userListings} />
       )}
-
-      {/* {userListings && userListings.length > 0 && (
-        <div className='flex flex-col gap-4'>
-          <h1 className='text-center mt-7 text-2xl font-semibold'>
-            Your Listings
-          </h1>
-          {userListings.map((listing) => (
-            <div
-              key={listing._id}
-              className='border rounded-lg p-3 flex justify-between items-center gap-4'
-            >
-              <Link to={`/listing/${listing._id}`}>
-                <img
-                  src={listing.imageUrls[0]}
-                  alt='listing cover'
-                  className='h-16 w-20 object-contain'
-                />
-              </Link>
-              <Link
-                className='text-slate-700 font-bold  hover:underline truncate flex-1'
-                to={`/listing/${listing._id}`}
-              >
-                <p>{listing.name}</p>
-              </Link>
-
-              {/* <div className='flex flex-col item-center'>
-                <button
-                  onClick={() => deleteListingHandler(listing._id)}
-                  className='text-red-700 uppercase'
-                >
-                  Delete
-                </button>
-                <Link to={`/update-listing/${listing._id}`}>
-                  <button className='text-green-700 uppercase'>Edit</button>
-                </Link>
-              </div> 
-            </div>
-          ))}
-        </div>
-      )} */}
-
   </div>
   )
 }

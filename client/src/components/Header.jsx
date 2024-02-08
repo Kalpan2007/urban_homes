@@ -1,13 +1,17 @@
 import "./Header.css"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {FaSearch} from "react-icons/fa"
 import {Link, useNavigate} from "react-router-dom"
-import {useSelector} from 'react-redux'
-import { BiMessageSquareAdd } from "react-icons/bi";
+import {useDispatch, useSelector} from 'react-redux'
+import { signOutUserStart, signOutUserSuccess, signOutUserFailure } from '../redux/user/userSlice';
+
 export default function Header() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
+    const [isHovered, setIsHovered] = useState(false);
     const {currentUser} = useSelector( state => state.user);
+    const dropdownRef = useRef(null);
 
 
     const submitHandler = (e) => {
@@ -25,10 +29,46 @@ export default function Header() {
           setSearchTerm(searchTermFromUrl);
         }
       }, [location.search]);
+
+      useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsHovered(false);
+            }
+        }
+
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
       
+    const closeDropdown = () => {
+        setIsHovered(false);
+    };
+
+    const signOutHandler = async () =>{
+        setIsHovered(false);
+        try{
+          dispatch(signOutUserStart());
+          const res = await fetch('/api/auth/signout');
+          const data = res.json();
+          if(data.success === false){
+            dispatch(signOutUserFailure(data.message));
+            return;
+          }
+          setIsHovered(false);
+          dispatch(signOutUserSuccess(data));
+          navigate('/');
+        }
+        catch(error){
+            console.log(error);
+        }
+      };
+
   return (
     <header className='bg-white shadow-md'>
-        <div className=''>
+        
 
         <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
             <Link to='/'>
@@ -56,7 +96,47 @@ export default function Header() {
                 <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
                 </Link>
                 
-                <Link to='/profile'>
+                <div
+                    ref={dropdownRef}
+                    onClick={() => setIsHovered(true)}
+                    className="relative inline-block" >
+                    <button >
+                        {
+                            currentUser ? (
+                                <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile' />
+                            ) : (
+                                <Link to='/sign-in'
+                                 className='text-slate-700 hover:underline'>Sign in</Link>
+                            )
+                        }
+                    </button>
+                    {
+                      currentUser &&  isHovered && (
+                            <div
+                            
+                            className="parent absolute w-40 z-10 top-full left-0 bg-white shadow-lg rounded-md p-2 mt-2 flex flex-col">
+
+                                <Link to="/profile" 
+                                className="w-full">
+                                <p className="block child w-full text-left py-1 px-3 hover:bg-gray-200 group">Profile</p>
+                                </Link>
+
+                                <Link to='/show-listing' 
+                                className="w-full">
+                                <p className="block child w-full text-left py-1 px-3 hover:bg-gray-200 ">My listing</p>
+                                </Link>
+
+                                <Link to="/create-listing" 
+                                 className="block w-full text-left py-1 px-3 hover:bg-gray-200">Create Listing</Link>
+
+                                <button
+                                type="button"
+                                onClick={signOutHandler}  className="block w-full text-left py-1 px-3 hover:bg-gray-200">Sign Out</button>
+                            </div>
+                        )
+                    }
+                </div>
+                {/* <Link to='/profile'>
                     {
                         currentUser ? (
                             <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile'></img>
@@ -64,14 +144,13 @@ export default function Header() {
                             <li className=' text-slate-700 hover:underline'>Sign in</li>
                         )
                     }
-                </Link>
+                </Link> */}
 
 
                 {/* <div className="ml-10 h-10 w-10 mt-1">
                 <BiMessageSquareAdd />
             </div> */}
             </ul>
-        </div>
         </div>
     </header>
   )

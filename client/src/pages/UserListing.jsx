@@ -50,23 +50,23 @@ const UserListing = () => {
   };
 
   return (
-    <div className='p-3 max-w-4xl mx-auto'>
+    <div className='p-3 max-w-6xl mx-auto '>
       <p className='text-red-700 mt-5'>
         {showListingsError ? 'Error showing listings' : ''}
       </p>
 
       {userListings && userListings.length > 0 && (
-        <div className='flex flex-col gap-4'>
-          <h1 className='text-center mt-7 text-2xl font-semibold mb-7'>
+        <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10 '>
+          <h1 className='text-center mt-2 text-2xl font-bold mb-6'>
             Your Listings
           </h1>
 
-        <div className=" flex gap-4 max-w-">
+          <div className=" flex flex-wrap justify-between gap-4 max-w-full ">
 
-          {userListings.map(listing => (
+          {userListings.map((listing,index) => (
             <div
               key={listing._id}
-              className=' bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]'
+              className='max-w-6xl mx-auto flex flex-col bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]'
             >
               <Link to={`/listing/${listing._id}`}>
                 <img
@@ -101,11 +101,9 @@ const UserListing = () => {
 
           <p className=' mx-4 text-slate-800 mt-2 font-semibold '>
             Rs{' '}
-            { listing.offer
-              ? listing.discountPrice.toLocaleString('en-US')
-              : listing.regularPrice.toLocaleString('en-US')}
+            {  listing.regularPrice.toLocaleString('en-US')}
             {listing.type === 'rent' && ' / month'}
-            {listing.type === 'sale' && ' / month'}
+            {listing.type === 'sale' && ''}
           </p>
 
               <div className=' mx-7 my-4 flex gap-7 justify-between item-center flex-wrap'>
