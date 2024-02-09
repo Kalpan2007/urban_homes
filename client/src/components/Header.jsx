@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { signOutUserStart, signOutUserSuccess, signOutUserFailure } from '../redux/user/userSlice';
 
 export default function Header() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
@@ -13,6 +14,16 @@ export default function Header() {
     const {currentUser} = useSelector( state => state.user);
     const dropdownRef = useRef(null);
 
+
+     // Function to handle the click event of the "Sign In" button
+  const handleSignInClick = () => {
+    setIsModalOpen(true);
+  };
+
+  // Function to handle closing the modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -105,6 +116,8 @@ export default function Header() {
                             currentUser ? (
                                 <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile' />
                             ) : (
+                                // <Link to='/sign-in'
+                                //  className='text-slate-700 hover:underline'>Sign in</Link>
                                 <Link to='/sign-in'
                                  className='text-slate-700 hover:underline'>Sign in</Link>
                             )

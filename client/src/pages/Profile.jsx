@@ -4,10 +4,10 @@ import { useRef } from 'react';
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage'
 import { app } from '../firebase';
 import { updateUserStart,updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signInStart, signOutUserStart, signOutUserFailure, signOutUserSuccess } from '../redux/user/userSlice';
-import {Link, useNavigate} from 'react-router-dom';
-import Footer from '../components/Footer';
+import {Link, Navigate, useNavigate} from 'react-router-dom';
 
 const Profile = () => {
+  const dispatch = useDispatch();
   const naviagte = useNavigate()
   const fileRef = useRef(null);
   const {currentUser, loading, error} = useSelector(state => state.user);
@@ -54,7 +54,7 @@ const Profile = () => {
 
   const submitHandler = async (e) => {
     console.log("updated...");
-    // e.preventDefault();   
+    e.preventDefault();   
      try {
       dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
@@ -62,7 +62,7 @@ const Profile = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(FormData),
       });
       const data = await res.json();
       if (data.success === false) {
@@ -108,9 +108,10 @@ const Profile = () => {
         return;
       }
       dispatch(signOutUserSuccess(data));
+      naviagte('/')
     }
     catch(error){
-
+      console.log(error);
     }
   };
 
@@ -133,24 +134,24 @@ const Profile = () => {
     }
   };
 
-  const deleteListingHandler = async (id) => {
-    try {
-      const res = await fetch(`/api/listing/delete/${id}`, {
-        method: 'DELETE',
-      });
-      const data = await res.json();
-      if (data.success === false) {
-        console.log(data.message);
-        return;
-      }
+  // const deleteListingHandler = async (id) => {
+  //   try {
+  //     const res = await fetch(`/api/listing/delete/${id}`, {
+  //       method: 'DELETE',
+  //     });
+  //     const data = await res.json();
+  //     if (data.success === false) {
+  //       console.log(data.message);
+  //       return;
+  //     }
 
-      setUserListings((prev) =>
-        prev.filter((listing) => listing._id !== id)
-      );
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  //     setUserListings((prev) =>
+  //       prev.filter((listing) => listing._id !== id)
+  //     );
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -196,7 +197,8 @@ const Profile = () => {
         placeholder='password' 
         id='password' 
         onChange={changeHandler}
-        className='border p-3 rounded-lg'></input>
+        className='border p-3 rounded-lg'
+        autocomplete="current-password"></input>
 
         <button 
           disabled={loading}
