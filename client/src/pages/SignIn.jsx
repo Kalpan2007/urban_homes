@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {signInStart, signInSuccess, signInFailure} from "../redux/user/userSlice"
 import OAuth from '../components/OAuth';
 
-export default function Signln() {
+const SignIn = () => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
@@ -52,13 +53,15 @@ export default function Signln() {
     }
   };
   
-
-
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
+    <div className='text-white bg-[#F1F5F1] fixed h-screen overflow-hidden w-screen flex justify-center  bg-cover bg-no-repeat py-20'>
+      
+      <div className="bg-s1ate-800 border border-s1ate-400 rounded-md px-8 shadow-2xl backdrop-filter backdrop-blur-sm bg-opacity-40 relative py-2 h-[450px]">
 
-      <form onSubmit={submitHandler} className='flex flex-col gap-4'>
+      <div className='p-4 max-w-3xl mx-auto'>
+      <h1 className='text-3xl text-black text-center font-semibold my-9'>Sign In</h1>
+
+      <form onSubmit={submitHandler} className='flex flex-col gap-4 w-[450px]'>
 
         <input type='email' placeholder='email' className='border p-3 rounded-lg' id='email' onChange={changeHandler}/>
 
@@ -71,12 +74,17 @@ export default function Signln() {
       </form>
 
       <div className='flex gap-2 mt-5'>
-        <p>Dont Have an account?</p>
+        <p className='text-black'>Dont Have an account?</p>
         <Link to="/sign-up">
-          <span className='text-blue-700 font-medium'>Sign up</span>
+          <span className='text-blue-700 font-bold'>Sign up</span>
         </Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error} </p>}
     </div>
+
+      </div>
+    </div>
   )
 }
+
+export default SignIn
