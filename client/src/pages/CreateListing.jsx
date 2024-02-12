@@ -158,32 +158,38 @@ const CreateListing = () => {
       };
 
   return (
-    <main className='p-3 max-w-4xl mx-auto'>
-        <h1 className='text-3xl font-semibold text-center my-7'>Create a Listing</h1>
+    // className='p-3 max-w-4xl mx-auto'
+    <main className='bg-white overflow-hidden'> 
+      <div className='text-white bg-white overflow-x-hidden h-full w-screen flex justify-center  bg-cover bg-no-repeat py-14' 
+      >
+      
+      <div className="bg-white max-w-6xl overflow-hidden  border border-s1ate-400 rounded-md px-8 shadow-2xl backdrop-filter backdrop-blur-2xl bg-opacity-2 relative pb-6 ">
+
+        <h1 className='text-3xl text-blue-700 font-semibold text-center mt-7  mb-10'>Create a Listing</h1>
 
         <form onSubmit={submitHandler} className='flex flex-col sm:flex-row gap-4'>
             <div className="flex flex-col gap-4 flex-1">
                 <input 
                 type='text' placeholder='Name' id='name' maxLength='62' minLength='10'  required
-                className='border p-3 rounded-lg '
+                className='border p-3 rounded-lg text-black '
                 onChange={changeHandler}
                 value={formData.name}
                 ></input>
                 <textarea 
                 type='text' placeholder='Description' id='description'  required
-                className='border p-3 rounded-lg '
+                className='border p-3 rounded-lg text-black'
                 onChange={changeHandler}
                 value={formData.description}
                 ></textarea>
                 <input 
                 type='text' placeholder='Address' id='address' required
-                className='border p-3 rounded-lg '
+                className='border p-3 rounded-lg text-black'
                 onChange={changeHandler}
                 value={formData.address}
                 ></input>
             
 
-                <div className='flex flex-wrap gap-6'>
+                <div className='flex flex-wrap gap-6 text-black'>
                 <div className="flex gap-2">
                     <input type='checkbox' id='sale' className='w-5' 
                     onChange={changeHandler}
@@ -216,7 +222,7 @@ const CreateListing = () => {
                 </div>
             </div>
 
-            <div className="flex flex-wrap gap-6">
+            <div className="flex flex-wrap gap-6 text-black">
                 <div className="flex items-center gap-2">
                     <input type='number' id='bedrooms' min='1' max='10' required
                     className='border p-3 rounded-lg border-gray-300'
@@ -230,6 +236,7 @@ const CreateListing = () => {
                     onChange={changeHandler}
                     value={formData.bathrooms}></input>
                     <span>Bathrooms</span>
+                    <br/>
                 </div>
                 <div className="flex items-center gap-2">
                     <input type='number' id='regularPrice'  required
@@ -241,10 +248,12 @@ const CreateListing = () => {
                         <p>Regular price</p>
                         <span className='text-xs'>(Rs / month)</span>
                     </div>
+                    
                 </div>
 
                 {
                     formData.offer && (
+                      
                     <div className="flex items-center gap-2">
                         <input type='number' id='discountPrice'  required
                         className='border p-3 rounded-lg border-gray-300'
@@ -270,7 +279,7 @@ const CreateListing = () => {
                 <input
                 onChange={(e) => setFiles(e.target.files)}
                 type='file' id='images' accept='image/*' multiple
-                className='p-3 border border-gray-300 rounded w-full'></input>
+                className='p-3 border border-gray-300 rounded w-full text-black'></input>
                 <button
                 disabled={uploading}
                 type='button' onClick={imageSubmitHandler}
@@ -303,13 +312,14 @@ const CreateListing = () => {
             ))}
             <button 
             disabled={loading || uploading}
-            className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+            className='p-3 font-medium bg-blue-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
             > {loading ? 'Creating...' : 'Create listing'}</button>
             {error && <p className='text-red-700 text-sm'>{error}</p>}
          </div>
 
         </form>
-      
+      </div>
+      </div>
     </main>
   )
 }

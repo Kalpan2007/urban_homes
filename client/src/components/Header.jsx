@@ -78,22 +78,24 @@ export default function Header() {
       };
 
   return (
-    <header className='bg-white shadow-md'>
+    <header className='bg-white shadow-lg'>
         
 
-        <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
+        <div className='flex justify-between items-center max-w-7xl mx-auto p-3'>
             <Link to='/'>
                 <div className=''>
-                    <img src='https://urban-homes.s3.ap-south-1.amazonaws.com/logo+3.png'
-                    className='h-[30px] w-[120px]'></img>
+                    <img src='https://urban-homes.s3.ap-south-1.amazonaws.com/black+logo.png'
+                    className='h-[45px] w-[145px]'></img>
+                    {/* <img src='https://urban-homes.s3.ap-south-1.amazonaws.com/logo+3.png'
+                    className='h-[30px] w-[120px]'></img> */}
                 </div>
             </Link>
 
             <form onSubmit={submitHandler} 
-            className='bg-slate-100 p-2 rounded-lg flex items-center  w-40 sm:w-64'>
+            className='bg-white border shadow-inner p-2 rounded-lg flex items-center  w-40 sm:w-64'>
                 <input type='text' placeholder='search...' 
                  onChange={(e) => setSearchTerm(e.target.value)}
-                className='bg-transparent focus:outline-none'></input>
+                className='bg-transparent focus:outline-none px-2'></input>
                 <button type='submit'>
                 <FaSearch className='text-slate-600' />
                 </button>
@@ -101,16 +103,16 @@ export default function Header() {
 
             <ul className='flex gap-4 mt-3 flex-wrap'>
                 <Link to='/'>
-                <li className='hidden sm:inline text-slate-700 hover:underline'>Home</li>
+                <li className='hidden font-medium sm:inline text-slate-700 hover:underline'>Home</li>
                 </Link>
                 <Link to='/about'>
-                <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
+                <li className='hidden font-medium sm:inline text-slate-700 hover:underline'>About</li>
                 </Link>
                 
                 <div
                     ref={dropdownRef}
                     onClick={() => setIsHovered(true)}
-                    className="relative inline-block" >
+                    className="relative inline-block space-x-2" >
                     <button >
                         {
                             currentUser ? (
@@ -119,7 +121,7 @@ export default function Header() {
                                 // <Link to='/sign-in'
                                 //  className='text-slate-700 hover:underline'>Sign in</Link>
                                 <Link to='/sign-in'
-                                 className='text-slate-700 hover:underline'>Sign in</Link>
+                                 className='text-white font-medium bg-blue-700 w-fit rounded-md px-4 py-2 ml-2 hover:underline'>Sign in</Link>
                             )
                         }
                     </button>
@@ -131,20 +133,20 @@ export default function Header() {
 
                                 <Link to="/profile" 
                                 className="w-full">
-                                <p className="block child w-full text-left py-1 px-3 hover:bg-gray-200 group">Profile</p>
+                                <p className="block child w-full font-medium text-left py-1 px-3 hover:bg-gray-200 group">Profile</p>
                                 </Link>
 
                                 <Link to='/show-listing' 
                                 className="w-full">
-                                <p className="block child w-full text-left py-1 px-3 hover:bg-gray-200 ">My listing</p>
+                                <p className="block font-medium child w-full text-left py-1 px-3 hover:bg-gray-200 ">My listing</p>
                                 </Link>
 
                                 <Link to="/create-listing" 
-                                 className="block w-full text-left py-1 px-3 hover:bg-gray-200">Create Listing</Link>
+                                 className="block font-medium w-full text-left py-1 px-3 hover:bg-gray-200">Create Listing</Link>
 
                                 <button
                                 type="button"
-                                onClick={signOutHandler}  className="block w-full text-left py-1 px-3 hover:bg-gray-200">Sign Out</button>
+                                onClick={signOutHandler}  className="block w-full text-left py-1 px-3 hover:bg-gray-200 font-medium">Sign Out</button>
                             </div>
                         )
                     }

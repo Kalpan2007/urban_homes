@@ -154,18 +154,24 @@ const Profile = () => {
   // };
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-      <h1 className='text-3xl font-semibold my-7 text-center'>Profile</h1>
+    // className='p-3 max-w-lg mx-auto'
+    <div className='overflow-hidden fixed' >
+      <div className='text-white overflow-y-hidden w-screen flex justify-center  bg-cover bg-no-repeat py-6  ' 
+    style={{backgroundImage: 'url(https://urban-homes.s3.ap-south-1.amazonaws.com/sign+bg.png)'}}>
+      
+      <div className="bg-white max-w-lg mx-auto overflow-hidden  border border-s1ate-400 rounded-md px-8 shadow-2xl backdrop-filter backdrop-blur-2xl bg-opacity-2 relative  flex flex-col justify-center item-center w-[1400px] ml-[500px]">
+
+      <h1 className='text-3xl text-black font-semibold my-7 text-center'>Profile</h1>
 
       <form 
        onSubmit={submitHandler} 
-       className='flex flex-col gap-4'>
+       className='flex flex-col gap-3'>
 
         <input onChange={(event)=> setFile(event.target.files[0])} type='file'  ref={fileRef} hidden accept='image/*' multiple>
         </input>
 
         <img onClick={() => fileRef.current.click()} src={FormData.avatar ||currentUser.avatar}
-        className='rounded-full w-24 h-24 object-cover cursor-pointer self-center mt-2 mb-6'></img>
+        className='rounded-full w-24 h-24 object-cover cursor-pointer self-center mt-2 mb-4'></img>
 
           <p className='self-center text-sm font-medium'>
             { 
@@ -184,20 +190,20 @@ const Profile = () => {
         id='username' 
         defaultValue={currentUser.username}
         onChange={changeHandler}
-        className='border p-3 rounded-lg'></input>
+        className='border p-3 rounded-lg text-black'></input>
 
         <input type='email' 
         placeholder='email'
         id='email' 
         defaultValue={currentUser.email}
          onChange={changeHandler}
-         className='border p-3 rounded-lg'></input>
+         className='border p-3 rounded-lg text-black'></input>
 
         <input type='password' 
         placeholder='password' 
         id='password' 
         onChange={changeHandler}
-        className='border p-3 rounded-lg'
+        className='border p-3 rounded-lg text-black`'
         autocomplete="current-password"></input>
 
         <button 
@@ -207,7 +213,7 @@ const Profile = () => {
           {loading ? 'updating...' : 'Update'}
         </button>
 
-        <Link className='bg-green-700 font-bold text-white text-center rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80' 
+        <Link className='bg-blue-700 font-bold text-white text-center rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80' 
         to="/create-listing">
           Create Listing
         </Link>
@@ -218,6 +224,7 @@ const Profile = () => {
         
         <span onClick={signOutHandler} className='text-red-600 font-medium cursor-pointer'>Sign out</span>
     </div>
+      
 
     <button type="button" onClick={showUserListingsHandler} className='text-green-700 w-full'>
         {/* Show Listings */}
@@ -231,6 +238,8 @@ const Profile = () => {
       {userListings && userListings.length > 0 && (
         <UserListing userListings={userListings} />
       )}
+      </div>
+  </div>
   </div>
   )
 }

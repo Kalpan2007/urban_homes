@@ -190,10 +190,15 @@ const UpdateListing = () => {
       };
 
   return (
-    <main className='p-3 max-w-4xl mx-auto'>
-        <h1 className='text-3xl font-semibold text-center my-7'>Update a Listing</h1>
+    <main className='overflow-hidden'>
+  
+      <div className='text-white bg-white overflow-x-hidden h-full w-screen flex justify-center  bg-cover bg-no-repeat py-10' 
+          >
+      
+      <div className="bg-white max-w-6xl overflow-hidden  border border-s1ate-400 rounded-md px-8 shadow-2xl backdrop-filter backdrop-blur-2xl bg-opacity-2 relative pb-6 ">
+        <h1 className='text-3xl text-blue-700 font-semibold text-center mb-10 mt-4'>Update a Listing</h1>
 
-        <form onSubmit={submitHandler} className='flex flex-col sm:flex-row gap-4'>
+        <form onSubmit={submitHandler} className='text-black flex flex-col sm:flex-row gap-4'>
             <div className="flex flex-col gap-4 flex-1">
                 <input 
                 type='text' placeholder='Name' id='name' maxLength='62' minLength='10'  required
@@ -335,13 +340,14 @@ const UpdateListing = () => {
             ))}
             <button 
             disabled={loading || uploading}
-            className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+            className='p-3 bg-blue-700 font-medium text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
             > {loading ? 'updating...' : 'update listing'}</button>
             {error && <p className='text-red-700 text-sm'>{error}</p>}
          </div>
 
         </form>
-      
+      </div>
+      </div>
     </main>
   )
 }
