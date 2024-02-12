@@ -50,6 +50,7 @@ const UserListing = () => {
   };
 
   return (
+    <div className='bg-white'>
     <div className='p-3 max-w-6xl mx-auto '>
       <p className='text-red-700 mt-5'>
         {showListingsError ? 'Error showing listings' : ''}
@@ -57,7 +58,7 @@ const UserListing = () => {
 
       {userListings && userListings.length > 0 && (
         <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10 '>
-          <h1 className='text-center mt-2 text-2xl font-bold mb-6'>
+          <h1 className='text-center text-blue-700 mt-2 text-2xl font-bold mb-6'>
             Your Listings
           </h1>
 
@@ -76,7 +77,7 @@ const UserListing = () => {
                 />
               </Link>
               <Link
-                className='truncate text-xl font-semibold text-slate-700'
+                className='truncate text-xl font-semibold text-black'
                 to={`/listing/${listing._id}`}
               >
                 <p className='mt-4 ml-4 '>{listing.name}</p>
@@ -88,18 +89,18 @@ const UserListing = () => {
               </div> */}
 
             <div className=' mx-3 mt-1 flex items-center gap-1'>
-            <MdLocationOn className='h-4 w-4 text-green-700' />
-            <p className='text-lg text-gray-600 truncate w-full'>
+            <MdLocationOn className='h-4 w-4 text-blue-700' />
+            <p className='text-lg text-black truncate w-full'>
               {listing.address}
             </p>
 
           </div>
-            <p className='text-sm mx-4 text-gray-600 line-clamp-2'>
+            <p className='text-sm mx-4 text-black line-clamp-2'>
                 <span className='font-medium'>Description -</span> 
             {listing.description}
           </p>
 
-          <p className=' mx-4 text-slate-800 mt-2 font-semibold '>
+          <p className=' mx-4 text-black mt-2 font-semibold '>
             Rs{' '}
             {  listing.regularPrice.toLocaleString('en-US')}
             {listing.type === 'rent' && ' / month'}
@@ -108,12 +109,12 @@ const UserListing = () => {
 
               <div className=' mx-7 my-4 flex gap-7 justify-between item-center flex-wrap'>
               <Link to={`/update-listing/${listing._id}`}>
-                  <button className='text-green-700 uppercase font-semibold hover:text-green-600'>Edit</button>
+                  <button className='text-blue-700 uppercase font-medium hover:text-blue-600'>Edit</button>
                 </Link>
 
                 <button
                   onClick={() => deleteListingHandler(listing._id)}
-                  className='text-red-700 uppercase font-semibold hover:text-red-600'
+                  className='text-red-700 uppercase font-medium hover:text-red-600'
                 >
                   Delete
                 </button>
@@ -123,6 +124,7 @@ const UserListing = () => {
         </div>
         </div>
       )}
+    </div>
     </div>
   );
 };

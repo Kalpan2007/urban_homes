@@ -51,12 +51,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='scrolling-sign scrolllbar-none'>
+    <div className='bg-white scrolling-sign scrolllbar-none'>
     
-      <div className='flex gap-6 max-w-8xl max-auto'>
+      <div className='flex gap-6 mb-8 max-w-8xl max-auto'>
         <div className='flex flex-col gap-6 py-28 px-[150px] '>
           <h1 className='text-black text-3xl font-bold lg:text-5xl'>
-            Find your next <span className='text-[#161A76]'>perfect</span><br/>
+            Find your next <span className='text-blue-700'>perfect</span><br/>
             place with ease
           </h1>
           <div className='text-black text-xs sm:text-sm'>
@@ -66,14 +66,33 @@ export default function Home() {
 
           </div>
 
-          <Link to="/search" className='text-xs sm:text-sm text-[#161A76] font-bold hover:underline'>
+          <div className=' relative flex flex-row items-center w-full space-x-44'>
+
+          <Link to="/search" className='relative flex flex-row items-center justify-start bg-blue-700 w-fit rounded-md px-7 w-64 py-2  text-white font-bold hover:underline'>
             let's get started...
           </Link>
+          <div class="w-12 fixed h-[60px] bg-white absolute skew-x-[20deg]
+                   flex justify-center items-center">
+                    {/* <svg
+                    viewBox="0 0 24 24"
+                    focusable="false"
+                    class="w-[20px] hover:fixed h-[20px] -skew-x-[20deg]">
+                    <path
+                      fill="currentColor"
+                      d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+                    ></path>
+                  </svg> */}
+                   </div>
+          </div>
+
+
+          
         </div>
         
 
         <div>
-          <img className='' src='https://urban-homes.s3.ap-south-1.amazonaws.com/Smart+home+system+in+the+room.png'></img>
+          <img className='w-[500px] h-[350px] mt-20 ml-8' src='https://urban-homes.s3.ap-south-1.amazonaws.com/home.png'></img>
+          {/* <img className='' src='https://urban-homes.s3.ap-south-1.amazonaws.com/Smart+home+system+in+the+room.png'></img> */}
         </div>
       </div>
 
@@ -100,8 +119,8 @@ export default function Home() {
         {offerListings && offerListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-              <Link className='text-sm font-medium text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
+              <h2 className='text-2xl font-semibold text-black'>Recent offers</h2>
+              <Link className='text-sm font-medium text-blue-700 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {offerListings.map((listing) => (
@@ -113,8 +132,8 @@ export default function Home() {
         {rentListings && rentListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-              <Link className='text-sm font-medium text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
+              <h2 className='text-2xl font-semibold text-black'>Recent places for rent</h2>
+              <Link className='text-sm font-medium text-blue-700 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {rentListings.map((listing) => (
@@ -126,8 +145,8 @@ export default function Home() {
         {saleListings && saleListings.length > 0 && (
           <div className=''>
             <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sale</h2>
-              <Link className='text-sm font-medium text-blue-800 hover:underline' to={'/search?type=sale'}>Show more places for sale</Link>
+              <h2 className='text-2xl font-semibold text-black'>Recent places for sale</h2>
+              <Link className='text-sm font-medium text-blue-700 hover:underline' to={'/search?type=sale'}>Show more places for sale</Link>
             </div>
             <div className='flex flex-wrap gap-4'>
               {saleListings.map((listing) => (

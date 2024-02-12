@@ -26,7 +26,7 @@ const Testimonial = () => {
                 image="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/image-01.jpg"
                 reviewImg="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg"
                 reviewAlt="lineicon"
-                details="Velit est sit voluptas eum sapiente omnis! Porro, impedit minus quam reprehenderit tempore sint quaerat id! Mollitia perspiciatis est asperiores commodi labore!"
+                details="Urban Homes stands out as a leading real estate agency, recognized for its unwavering commitment to excellence! Our mission is deeply rooted in helping clients achieve their unique real estate goals. "
                 name="Larry Diamond"
                 position="Chief Executive Officer."
               />
@@ -36,11 +36,11 @@ const Testimonial = () => {
                 image="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/image-01.jpg"
                 reviewImg="https://cdn.tailgrids.com/2.0/image/marketing/images/testimonials/testimonial-01/lineicon.svg"
                 reviewAlt="lineicon"
-                details="Velit est sit voluptas eum sapiente omnis! Porro, impedit minus quam reprehenderit tempore sint quaerat id! Mollitia perspiciatis est asperiores commodi labore!"
+                details="Urban Homes stands out as a leading real estate agency, recognized for its unwavering commitment to excellence! Our mission is deeply rooted in helping clients achieve their unique real estate goals. "
                 
               />
             </SwiperSlide>
-            <div className="absolute left-0 right-0 z-10 flex items-center justify-center gap-5 sm:bottom-0 hover:none">
+            {/* <div className="absolute left-0 right-0 z-10 flex items-center justify-center gap-5 sm:bottom-0 hover:none">
               <div className="prev-arrow cursor-pointer" onClick={handlePrev}>
                 <FaArrowAltCircleLeft className="h-5 w-5" />
 
@@ -50,7 +50,7 @@ const Testimonial = () => {
             <FaArrowAltCircleRight  className="h-5 w-5"/>
               </div>
 
-            </div>
+            </div> */}
           </Swiper>
         </div>
       </section>
@@ -99,7 +99,7 @@ const SingleTestimonial = ({
                 <img src={reviewImg} alt={reviewAlt} />
               </div>
 
-              <p className="mb-11 text-base font-normal italic leading-[1.81] text-body-color dark:text-dark-6 sm:text-[22px]">
+              <p className="mb-11 text-blue-700 font-normal italic leading-[1.81] text-body-color dark:text-dark-6 sm:text-[22px]">
                 {details}
               </p>
 
