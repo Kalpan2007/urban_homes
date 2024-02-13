@@ -32,8 +32,7 @@
 - **Deleting a Listing** : Enable users to delete their own listings.
 - **Contacting Landlord** : Provide a way for users to contact the landlord regarding a listing
   
-
-  ## Technologies Used
+## Technologies Used
 
 - **MongoDB**: Database for storing user information and Listing data.
 - **Express.js**: Backend framework for handling server-side logic and routing.
@@ -49,13 +48,13 @@
       <img src='https://github.com/Ashokgehlot318/urban_homes/assets/118416828/98f3ef27-0109-4cc8-9678-0f8cb5ddfb19'>
   </div>
   
-  # Search Property Page
+# Search Property Page
 
   <div> 
       <img src='https://github.com/Ashokgehlot318/urban_homes/assets/118416828/c6c97b3f-f606-4d8f-a72a-14f54aa9f0ba'>
   </div>
 
-  # Create a new Listing Page
+# Create a new Listing Page
  <div> 
       <img src='https://github.com/Ashokgehlot318/urban_homes/assets/118416828/6c5c1f63-07aa-4290-9a90-3c9060ccbb6c'>
   </div>
