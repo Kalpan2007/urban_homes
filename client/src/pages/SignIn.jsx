@@ -73,9 +73,9 @@ const SignIn = () => {
 
       <form onSubmit={submitHandler} className='flex flex-col gap-4 w-[450px]'>
 
-        <input type='email' placeholder='email' className='border p-3 rounded-lg' id='email' onChange={changeHandler}/>
+        <input type='email' placeholder='email' className='border p-3 rounded-lg text-black' id='email' onChange={changeHandler}/>
 
-        <input type='password' placeholder='password' className='text-black border p-3 rounded-lg' id='password' onChange={changeHandler}/>
+        <input type='password' placeholder='password' className='text-black border p-3 rounded-lg text-black' id='password' onChange={changeHandler}/>
 
         <button disabled={loading} className='bg-black font-bold text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
           {loading ? 'Loading...' : 'Sign in'}
