@@ -15,7 +15,6 @@ const Profile = () => {
   const [filePercentage, setFilePercentage] = useState(0);
   const [fileUploadError,setFileUploadError] = useState(false);
   const [FormData,setFormData] = useState({});
-  const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
 
   useEffect(()=> {
@@ -42,7 +41,7 @@ const Profile = () => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-          setFormData({ ...formData, avatar: downloadURL })
+          setFormData({ ...FormData, avatar: downloadURL })
         );
       }
     );
@@ -50,6 +49,8 @@ const Profile = () => {
 
   const changeHandler = (event) =>{
     setFormData({...FormData, [event.target.id]: event.target.value });
+    console.log(event.target.id);
+    console.log(event.target.value);
   }
 
   const submitHandler = async (e) => {
@@ -115,44 +116,8 @@ const Profile = () => {
     }
   };
 
-  const showUserListingsHandler = async () => {
-    try {
-      setShowListingsError(false);
-      const res = await fetch(`/api/user/listings/${currentUser._id}`);
-      // console.log(res);
-      const data = await res.json();
-      if (data.success === false) {
-        setShowListingsError(true);
-        return;
-      }
 
-      setUserListings(data);
-      naviagte('/show-listing')
-    } catch (error) {
-      console.log(error);
-      setShowListingsError(true);
-    }
-  };
-
-  // const deleteListingHandler = async (id) => {
-  //   try {
-  //     const res = await fetch(`/api/listing/delete/${id}`, {
-  //       method: 'DELETE',
-  //     });
-  //     const data = await res.json();
-  //     if (data.success === false) {
-  //       console.log(data.message);
-  //       return;
-  //     }
-
-  //     setUserListings((prev) =>
-  //       prev.filter((listing) => listing._id !== id)
-  //     );
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
-
+  
   return (
     // className='p-3 max-w-lg mx-auto'
     <div className='overflow-hidden fixed' >
@@ -167,11 +132,14 @@ const Profile = () => {
        onSubmit={submitHandler} 
        className='flex flex-col gap-3'>
 
-        <input onChange={(event)=> setFile(event.target.files[0])} type='file'  ref={fileRef} hidden accept='image/*' multiple>
+        <input onChange={(event)=> setFile(event.target.files[0])} type='file'  ref={fileRef} hidden accept='image/*' multiple
+        id='avatar'
+        >
         </input>
 
         <img onClick={() => fileRef.current.click()} src={FormData.avatar ||currentUser.avatar}
-        className='rounded-full w-24 h-24 object-cover cursor-pointer self-center mt-2 mb-4'></img>
+        className='rounded-full w-24 h-24 object-cover cursor-pointer self-center mt-2 mb-4'
+        ></img>
 
           <p className='self-center text-sm font-medium'>
             { 
@@ -225,15 +193,6 @@ const Profile = () => {
         <span onClick={signOutHandler} className='text-red-600 font-medium cursor-pointer'>Sign out</span>
     </div>
       
-
-    <button type="button" onClick={showUserListingsHandler} className='text-green-700 w-full'>
-        {/* Show Listings */}
-        {/* <Link to="/show-listing" ></Link> */}
-      </button>
-      <p className='text-red-700 mt-5'>
-        {/* {showListingsError ? 'Error showing listings' : ''} */}
-        {showListingsError ? 'Error showing listings' : ''}
-      </p>
 
       {userListings && userListings.length > 0 && (
         <UserListing userListings={userListings} />
